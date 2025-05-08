@@ -18,9 +18,9 @@ __pycache__/
 local_settings.py
 
 # Media and static files (optional if you generate them)
-media/
-staticfiles/
-static/
+# media/
+# staticfiles/
+# static/
 
 # Virtual environment
 venv/
