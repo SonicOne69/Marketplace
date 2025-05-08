@@ -1,0 +1,49 @@
+<style>
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; /* full height of screen */
+    width: 200px;
+    background-color: #1e1e2f;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  }
+  
+  .sidebar h2 a {
+    margin-top: 0;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .sidebar h2 :hover{
+    text-decoration: underline;
+  }
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin: 15px 0;
+  }
+  
+  .sidebar ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .sidebar ul li a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="sidebar">
+    <h2><a href="{% url 'main' %}">Papafo</a></h2>
+    <ul>
+      {% for category in categories %}
+        <li><a href="{% url 'categories' category.name %}">{{ category.name }}</a></li>
+      {% endfor %}
+    </ul>
+</div>

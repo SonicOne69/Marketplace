@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <title>Guitar Listing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 30px;
+    }
+
+    .container {
+      display: flex;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .image-section {
+      flex: 1;
+      background: #eee;
+    }
+
+    .image-section img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .info-section {
+      flex: 1;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .price {
+      font-size: 1.8rem;
+      color: #d62828;
+      margin-bottom: 10px;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .seller {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f1f1f1;
+      border-radius: 8px;
+    }
+
+    .seller h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .description {
+      margin-top: 20px;
+      color: #444;
+    }
+
+    .button {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #ff006e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .button:hover {
+      background-color: #d4005c;
+    }
+  </style>
+</head>
+
+  <a href="{% url 'main' %}">
+    Back
+  </a>
+
+  <div class="container">
+    {% if post.image %}
+        <div class="image-section">
+            <img src="{{ post.image.url }}" alt="Guitar Image">
+        </div>
+    {% else %}
+        <div class="image-section">
+            <img src="{% static 'images/download.png' %}" alt="image_product">
+        </div>
+    {% endif %}
+    <div class="info-section">
+      <div>
+        <div class="price">{{ post.price }} {{ post.currency }}</div>
+        <div class="description">
+          <h2>{{post.title}}</h2>
+          <p>{{post.description}}</p>
+        </div>
+      </div>
+      <div>
+        <div class="seller">
+          <h3>{{post.user}}</h3>
+          <p>Online n hours ago</p>
+          <p>nomber</p>
+        </div>
+        <button class="button" ><a class="button"  href="{% url 'chat' post.title %}" style="text-decoration: none; color: white;">Message</a></button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

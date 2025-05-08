@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+{% block content %}
+    <style>
+        .bottom-left-text {
+        position: fixed;
+        bottom: 20px;
+         left: 20px;
+        color: white;
+        font-size: 16px;
+         z-index: 9999;
+        }
+    </style>
+  
+    
+    <h1>Papafo kg</h1>
+    {% include 'base/sidebar.html'%}
+    {% include 'base/posts.html' %}
+    {% include 'base/search.html' %}
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="bottom-left-text">
+            Logout
+        </a>
+    {% else %}
+        <a href="{% url 'login' %}" class="bottom-left-text">
+            Login
+        </a>
+    {% endif %}
+      
+        
+{% endblock %}

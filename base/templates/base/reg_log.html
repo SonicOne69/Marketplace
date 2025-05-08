@@ -1,0 +1,20 @@
+{% if page == 'login' %}
+    <h1>Login</h1>
+    <form action="{% url 'login' %}" method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <button type="submit">Send</button>
+    </form>
+    {% if messages %}
+            {% for message in messages %}
+                {{message}} 
+            {% endfor %}
+    {% endif %}
+{% else %}
+    <h1>Register</h1>
+    <form action="{% url 'register' %}" method="post">
+    {{form.as_p}}
+    {% csrf_token %}
+    <button type="submit">Send</button>
+    </form>
+{% endif %}

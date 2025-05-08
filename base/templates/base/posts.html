@@ -1,0 +1,45 @@
+<style>
+    .posts {
+      margin-left: 600px; /* same as your sidebar width */
+      padding: 20px;
+      display: flex;
+      flex-direction: column; /* centers horizontally */
+      font-size: large;
+    }
+  
+    .post {
+      width: 60%; /* or any fixed size you like */
+      background: #f2f2f2;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+  </style>
+  
+<div class="posts">
+    {% block post %}
+        <ul>
+        {% for post in posts %}
+            {% if post.image %}
+              <div style="text-align:center;">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" style="height: 300px; width: 300px; margin-bottom: 0px; margin-right: 500px;">
+              </div>
+            {% endif %}
+            <li class="post">
+            <a href="{% url 'post_page' post.title %}">{{ post.title }}</a>
+            {{ post.adress }}
+            {{ post.user }}
+            </li>
+        {% endfor %}
+        </ul>
+        {% if messages %}
+            {% for message in messages %}
+            <li class="post"> {{message}} </li>
+            {% endfor %}
+        {% endif %}
+        <h3><a href="{% url 'create_post' %}">POST</a></h3>
+
+    {% endblock %}
+</div>
+

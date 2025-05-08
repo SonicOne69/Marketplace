@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+
+# If using PostgreSQL locally:
+*.psql
+
+# Local settings (if any)
+local_settings.py
+
+# Media and static files (optional if you generate them)
+media/
+staticfiles/
+static/
+
+# Virtual environment
+venv/
+env/
+lalafo_venv/
+
+# VS Code
+.vscode/
+
+# macOS / Windows system files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Pipenv or Poetry
+Pipfile.lock
+poetry.lock
+
+# Environment variable files
+.env

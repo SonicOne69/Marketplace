@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      background-color: whitesmoke; /* Keeping it dark but not the same as buttons/bubbles */
+    }
+    .bubble {
+      background-color: #1e1e2f;
+    }
+    .btn {
+      background-color: #1e1e2f;
+    }
+    .btn:hover {
+      background-color: #2b2b42;
+    }
+    a p{
+        text-decoration: none;
+        color: black;
+    }
+  </style>
+
+</head>
+<body class="h-screen flex flex-col relative text-white">
+
+  <!-- Back Button -->
+  <a href="{% url 'post_page' chatname.title %}">
+    <p>Go back</p>
+  </a>
+
+  <!-- Chat Messages -->
+  <div  class="flex-1 overflow-y-auto px-4 py-20">
+    <div id="messages" class="max-w-2xl mx-auto space-y-4">
+      {% for message in messages %}
+        {% include 'base/partials/partial_mes.html' with message=message %}
+      {% endfor %}
+      
+    </div>
+  </div>
+
+  <!-- Chat Input -->
+  <form hx-post="{% url 'chat' chatname.title %}" hx-target="#messages" hx-swap="beforeend" class="bg-[#1a1a2b] p-4 shadow-inner">
+  
+    {% csrf_token %}
+    <div class="max-w-2xl mx-auto flex items-center gap-2">
+      <input name="message" type="text" placeholder="Type your message..." class="flex-1 p-2 bg-[#1e1e2f] text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button type="submit" class="btn px-4 py-2 text-white rounded-lg transition duration-150">
+        Send
+      </button>
+    </div>
+  </form>
+
+</body>
+</html>
