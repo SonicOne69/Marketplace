@@ -88,11 +88,12 @@ def post_page(request, postname):
     return render(request, 'base/post_page.html', context)
 @login_required(login_url='/login/')
 def chat(request, chatname):
-    message = Message.objects.all()
+    message = Message.objects.filter(page__title = chatname)
     chat_name = Post.objects.get(title = chatname)
     if request.htmx:
         new_message = Message.objects.create(
             text = request.POST.get('message'),
+            page = chat_name,
             user = request.user
         )
         return render(request, 'base/partials/partial_mes.html', {'message': new_message, 'chatname': chat_name})

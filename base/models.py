@@ -32,7 +32,11 @@ class Post(models.Model):
         return self.title
 
 class Message(models.Model):
+    page = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     text = models.TextField()
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.text
